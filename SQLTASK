@@ -1,0 +1,27 @@
+--CREATE TABLE
+CREATE TABLE patient_detials(
+	patient_id SERIAL PRIMARY KEY, 
+	patient_name VARCHAR NOT NULL,
+	patient_age INT NOT NULL,
+	patient_gender CHAR NOT NULL,
+	patient_mobile VARCHAR NOT NULL,
+	patient_email VARCHAR NULL
+);
+
+--INSERT DATA
+INSERT INTO patient_detials 
+(patient_name,patient_age,patient_gender,patient_mobile,patient_email) 
+VALUES
+	('Santhosh M',22,'M','6380291755','msanthosh9943@gmail.com'),
+	('Varun KD',23,'M','8585698578','varun@gmail.com'),
+	('Sharmila S',22,'F','9685745869','sharmila@gmail.com'),
+	('Balaji K',23,'M','9365287415','balaji@gmail.com'),
+	('Dhatchu D',23,'M','7458236598','dhatchu@gmail.com'),
+	('Mani T',22,'M','7451245784','mani@gmail.com'),
+	('Kani K',22,'F','6859478598','kani@gmail.com');
+	
+--UPDATE DATA to specific/multiple column
+--specific column
+UPDATE patient_detials SET patient_age=24 WHERE patient_name='Balaji K';
+--multiple column
+UPDATE patient_detials SET patient_age=22,patient_name='Manikandan T' WHERE patient_id=6;
