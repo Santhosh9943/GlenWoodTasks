@@ -1,24 +1,62 @@
+--CREATE BEFORE TRIGGER
+CREATE SEQUENCE patient_id_sequence
+START WITH 001;
+
+CREATE TRIGGER patient_id_generator
+BEFORE INSERT ON patient_detials
+FOR EACH ROW
+	WHEN (NEW.patient_id IS NULL)
+BEGIN	
+	NEW.patient_id=nextval(patient_id_sequence);
+END;
+
 --CREATE TABLE
+
+CREATE TYPE GENDER AS ENUM ('M','F','O');
+
 CREATE TABLE patient_detials(
-	patient_id SERIAL PRIMARY KEY, 
+	patient_id INT NOT NULL PRIMARY KEY, 
 	patient_name VARCHAR NOT NULL,
 	patient_age INT NOT NULL,
-	patient_gender CHAR NOT NULL,
+	patient_dob DATE NULL,
+	patient_gender GENDER NOT NULL,
 	patient_mobile VARCHAR NOT NULL,
 	patient_email VARCHAR NULL
 );
 
+--CREATE FUNCTION
+CREATE FUNCTION patient_log()
+AS
+$$
+BEGIN
+	INSERT INTO AUDIT(patient_log_id,patient_entry_date) VALUES (new.patient_id, current_timestamp);
+    RETURN NEW;
+END;
+$$
+LANGUAGE plpgsql;
+
+--CREATE AFTER TRIGGER
+CREATE TRIGGER patient_log_trigger
+AFTER INSERT ON patient_detials
+FOR EACH ROW 
+EXECUTE PROCEDURE patient_log();
+
+CREATE TABLE patient_log_detials(
+   patient_log_id INT NOT NULL,
+   patient_entry_date TEXT NOT NULL
+);
+
 --INSERT DATA
 INSERT INTO patient_detials 
-(patient_name,patient_age,patient_gender,patient_mobile,patient_email) 
+(patient_name,patient_age,patient_dob,patient_gender,patient_mobile,patient_email) 
 VALUES
-	('Santhosh M',22,'M','6380291755','msanthosh9943@gmail.com'),
-	('Varun KD',23,'M','8585698578','varun@gmail.com'),
-	('Sharmila S',22,'F','9685745869','sharmila@gmail.com'),
-	('Balaji K',23,'M','9365287415','balaji@gmail.com'),
-	('Dhatchu D',23,'M','7458236598','dhatchu@gmail.com'),
-	('Mani T',22,'M','7451245784','mani@gmail.com'),
-	('Kani K',22,'F','6859478598','kani@gmail.com');
+	('Santhosh M',22,'2000-02-02','M','6380291755','msanthosh9943@gmail.com'),
+	('Varun KD',23,'1999-02-02','M','8585698578','varun@gmail.com'),
+	('Sharmila S',22,'2000-02-02','F','9685745869','sharmila@gmail.com'),
+	('Balaji K',23,'1999-02-02','M','9365287415','balaji@gmail.com'),
+	('Dhatchu D',23,'1999-02-02','M','7458236598','dhatchu@gmail.com'),
+	('Mani T',22,'2000-02-02','M','7451245784','mani@gmail.com'),
+	('Kani K',22,'1999-02-02','F','6859478598','kani@gmail.com');
 	
 --UPDATE DATA to specific/multiple column
 --specific column
