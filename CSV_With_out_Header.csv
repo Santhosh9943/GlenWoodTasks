@@ -1,11 +1,10 @@
-patient_id,patient_name,patient_age,patient_dob,patient_gender,patient_mobile,patient_email,branch_id
 1001,Santhosh M,22,2000-02-02,M,6380291755,msanthosh9943@gmail.com,1
-1003,Sharmila S,22,2000-08-12,F,9685745869,sharmila@gmail.com,2
-1004,Balaji K,23,1999-02-28,M,9365287415,balaji@gmail.com,1
 1005,Dhatchu D,23,1999-03-18,M,7458236598,dhatchu@gmail.com,2
 1006,Mani T,22,2000-05-27,M,7451245784,mani@gmail.com,3
 1007,Kani K,22,1999-07-08,F,6859478598,kani@gmail.com,1
-1008,Keerthana,21,2001-02-08,F,8542698255,kani@gmail.com,
-1010,Balaji K,25,1999-07-08,F,7548756987,mani@gmail.com,
-1009,Kani K,23,2000-07-08,F,8579456987,ram@gmail.com,
+1004,Balaji K,23,1999-02-28,M,9365287415,balaji@gmail.com,3
 1002,Varun KD,23,1999-12-02,M,8585698578,varun@gmail.com,2
+1010,Sharmila S,22,2000-08-12,F,9685745869,sharmila@gmail.com,2
+1015,Keerthana,21,2001-02-08,F,8542698255,kani@gmail.com,
+1016,Kani K,23,2000-07-08,F,8579456987,ram@gmail.com,
+1017,Balaji K,25,1999-07-08,F,7548756987,mani@gmail.com,
