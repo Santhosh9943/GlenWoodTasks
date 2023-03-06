@@ -1,0 +1,10 @@
+<project name="hello" default="run">
+  <target name="compile">
+    <mkdir dir="build"/>
+    <javac srcdir="src" destdir="build"/>
+  </target>
+  <target name="run" depends="compile">
+    <java classname="hello" classpath="build"/>
+  </target>
+</project>
+
