@@ -1,0 +1,42 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.2.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.2.xsd">
+ 
+	<context:component-scan base-package="com.glenwood.pmp.appriss" />
+	<context:component-scan base-package="com.glenwood.pmp.logicoy" />
+	<context:component-scan base-package="com.glenwood.couponservices.optimumrxservices" />
+ 
+	<bean id="readOnlyDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="org.postgresql.Driver" />
+		<property name="url" value="jdbc:postgresql://${db.readonly.host}:${db.readonly.port}/${db.readonly.dbname}?searchpath=public" />
+		<property name="username" value="${db.readonly.username}" />
+		<property name="password" value="${db.readonly.password}" />
+		<property name="maxActive" value="${db.readonly.maxActive}"/>
+		<property name="maxIdle" value="${db.readonly.maxIdle}"/>
+		<property name="minIdle" value="${db.readonly.minIdle}"/>
+		<property name="maxWait" value="${db.readonly.maxWait}"/>
+		<property name="timeBetweenEvictionRunsMillis" value="${db.readonly.timeBetweenEvictionRunsMillis}"/>
+		<property name="minEvictableIdleTimeMillis" value="${db.readonly.minEvictableIdleTimeMillis}"/>
+	</bean>
+	
+	<bean id="readWriteDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="org.postgresql.Driver" />
+		<property name="url" value="jdbc:postgresql://${db.readwrite.host}:${db.readwrite.port}/${db.readwrite.dbname}?searchpath=public" />
+		<property name="username" value="${db.readwrite.username}" />
+		<property name="password" value="${db.readwrite.password}" />
+		<property name="maxActive" value="${db.readwrite.maxActive}"/>
+		<property name="maxIdle" value="${db.readwrite.maxIdle}"/>
+		<property name="minIdle" value="${db.readwrite.minIdle}"/>
+		<property name="maxWait" value="${db.readwrite.maxWait}"/>
+		<property name="timeBetweenEvictionRunsMillis" value="${db.readwrite.timeBetweenEvictionRunsMillis}"/>
+		<property name="minEvictableIdleTimeMillis" value="${db.readwrite.minEvictableIdleTimeMillis}"/>
+	</bean>
+	
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location" value="file://///usr/local/hub/datasource.properties"/>
+	</bean>	
+	
+</beans>

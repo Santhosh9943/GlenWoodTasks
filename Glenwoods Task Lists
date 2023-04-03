@@ -1,0 +1,9 @@
+1. HTML & CSS.
+2. POSTGRES SQL TASKS.
+3. MAVEN, ANT, GIT & GITHUB.
+4. View of Special server update Documents.
+5. About our Servers(Bore metal hypervisor(Xen Ios[xen center])
+6. Web Server [/mnt/version/clint/](72), DB Server [DBurl:port/DBname(clintname),n,p](122), File Server [mnt/shared/clintname/](31).
+7. DB Backup method(replication,pgpool), FTP Backup method(rsync)
+8. Apache & Apache2, http and https, http ststus codes.
+9. Apache2 config Task(redirect page use httpd.config)

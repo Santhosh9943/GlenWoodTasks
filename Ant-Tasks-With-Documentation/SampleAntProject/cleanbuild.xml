@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="clean" name="SampleAntProject">
+
+	<target name="clean">
+   		 <delete dir="build" />
+	</target>
+
+
+</project>

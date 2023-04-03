@@ -1,0 +1,321 @@
+import java.io.File;
+import java.io.FileWriter;
+import java.io.FileInputStream;
+import org.apache.commons.httpclient.HttpClient;
+import org.apache.commons.httpclient.HttpState;
+import org.apache.commons.httpclient.methods.InputStreamRequestEntity;
+import org.apache.commons.httpclient.methods.PostMethod;
+import org.apache.commons.httpclient.methods.RequestEntity;
+import org.apache.commons.httpclient.methods.EntityEnclosingMethod;
+import org.apache.commons.httpclient.auth.AuthScope;
+import org.apache.commons.httpclient.UsernamePasswordCredentials;
+import java.sql.Statement;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import org.apache.commons.httpclient.NTCredentials;
+import org.apache.commons.httpclient.HostConfiguration;
+import org.apache.commons.httpclient.Credentials;
+import java.net.URI;
+import org.apache.commons.codec.net.BCodec;
+import org.apache.commons.httpclient.Header;
+import java.util.Date;
+import java.util.Calendar;
+import java.util.TimeZone;
+
+
+import java.io.IOException;
+import java.io.FileReader;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
+
+
+public class DirectoryService extends BCodec
+{
+String accountId1="ksingh";
+String accountId2;
+String versionOfDoc="";
+public String writeFiles(String str,String isDirectoryService,String accountId)throws Exception
+{
+        accountId2=accountId;
+	if(accountId1.equals(accountId2)){
+              System.out.println("::"+accountId2+"_CALLING_FROM_SERVER_SIDE");
+        }
+System.out.println("came");
+	File f;
+	if(!new File("/mnt/vs12shared/serviceshared/SurescriptsNew_Works/"+accountId).exists())
+		new File("/mnt/vs12shared/serviceshared/SurescriptsNew_Works/"+accountId).mkdirs();
+	if(!new File("/mnt/vs12shared/serviceshared/Surescripts_Works/"+accountId+"/Directories").exists())
+		new File("/mnt/vs12shared/serviceshared/Surescripts_Works/"+accountId+"/Directories").mkdirs();
+	if(!new File("/mnt/vs12shared/serviceshared/Surescripts_Works/"+accountId+"/Messaging").exists())
+		new File("/mnt/vs12shared/serviceshared/Surescripts_Works/"+accountId+"/Messaging").mkdirs();
+
+	if(isDirectoryService.equals("true"))
+		f=new File("/mnt/vs12shared/serviceshared/Surescripts_Works/"+accountId+"/Directories/MessageFile_"+getUTCTime().replaceAll(":", "-")+".xml");
+	else
+		f=new File("/mnt/vs12shared/serviceshared/Surescripts_Works/"+accountId+"/Messaging/MessageFile_"+getUTCTime().replaceAll(":", "-")+".xml");
+
+    FileWriter fw = null;
+		FileReader Reader = null;
+		try{
+			fw=new FileWriter(f);
+			fw.write(str);   
+                        if(accountId1.equals(accountId2))
+                                System.out.println("::"+accountId2+"_FILE_HAS_BEEN_WRITTEN");
+			if(fw != null){
+				fw.close();
+				fw = null;
+			}
+
+		Document template = null;
+		InputSource is2	  =	new InputSource();
+		Reader = new FileReader(f);
+		is2.setCharacterStream(Reader);		
+		is2.setEncoding("UTF-8");
+		DocumentBuilderFactory docBuilderFactory =	DocumentBuilderFactory.newInstance();
+		DocumentBuilder docBuilder	=	docBuilderFactory.newDocumentBuilder();
+		template =	docBuilder.parse(is2);
+		if(Reader!= null)
+                        Reader.close();								
+		Node messageNode = template.getElementsByTagName("Message").item(0);
+		Node versionAttrNode = messageNode.getAttributes().getNamedItem("version");		
+		if(versionAttrNode!=null && versionAttrNode.getNodeValue().equalsIgnoreCase("010"))
+			versionOfDoc="10.6";	
+                 
+		}catch(IOException e){
+        //            if(accountId1.equals(accountId2))
+        //               System.out.println("!!!!!!!!!  This is Kamal Singh IO Exception !!!!!!!!!!!");
+                    e.printStackTrace();
+        	}catch(Exception e){
+        //           if(accountId1.equals(accountId2))
+        //             System.out.println("!!!!!!!!!  This is Kamal Singh Exception !!!!!!!!!!!");
+        	e.printStackTrace();
+		} finally{
+			if(fw != null)
+				fw.close();
+			if(Reader!= null)
+				Reader.close();
+		}
+    
+	//System.out.println("isDirectoryService:"+isDirectoryService);
+        String response="";
+		response = getResponse(f,isDirectoryService);
+		if(response !=null && !response.equals("")){
+				File resFile;
+				if(isDirectoryService.equals("true"))
+						resFile=new File("/mnt/vs12shared/serviceshared/Surescripts_Works/"+accountId+"/Directories/StatusFile_"+getUTCTime().replaceAll(":", "-")+".xml");
+				else
+						resFile=new File("/mnt/vs12shared/serviceshared/Surescripts_Works/"+accountId+"/Messaging/StatusFile_"+getUTCTime().replaceAll(":", "-")+".xml");
+			FileWriter	resWriter=new FileWriter(resFile);
+			resWriter.write(response);   
+			if(resWriter != null){
+				resWriter.close();
+				resWriter = null;
+			}
+		}
+        return response;
+    	// return getResponse(f,isDirectoryService);
+}
+public String writeFiles1(String str,String isDirectoryService,String accountId)throws Exception
+{
+
+System.out.println("\n====================eRx===============");
+	File f=null;
+	if(!new File("/mnt/vs12shared/serviceshared/Surescripts_Works/"+accountId).exists())
+		new File("/mnt/vs12shared/serviceshared/Surescripts_Works/"+accountId).mkdirs();
+	if(!new File("/mnt/vs12shared/serviceshared/Surescripts_Works/"+accountId+"/Directories").exists())
+		new File("/mnt/vs12shared/serviceshared/Surescripts_Works/"+accountId+"/Directories").mkdirs();
+	if(!new File("/mnt/vs12shared/serviceshared/Surescripts_Works/"+accountId+"/Messaging").exists())
+		new File("/mnt/vs12shared/serviceshared/Surescripts_Works/"+accountId+"/Messaging").mkdirs();
+	
+	String strFileList[]=str.split("!!");
+    String replyMessage="";
+	FileWriter fw = null;
+	FileReader Reader = null;
+	for(int count=0;count<strFileList.length;count++){
+	try{
+		if(isDirectoryService.equals("true"))
+                f=new File("/mnt/vs12shared/serviceshared/Surescripts_Works/"+accountId+"/Directories/MessageFile_"+getUTCTime().replaceAll(":", "-")+".xml");
+        else
+                f=new File("/mnt/vs12shared/serviceshared/Surescripts_Works/"+accountId+"/Messaging/MessageFile_"+getUTCTime().replaceAll(":", "-")+"_"+count+".xml");
+
+		fw=new FileWriter(f);
+		//System.out.println(strFileList[count]);
+		fw.write(strFileList[count]);
+		if(fw != null)
+				fw.close();
+				
+		Document template = null;
+		InputSource is2	  =	new InputSource();
+		Reader = new FileReader(f);
+		is2.setCharacterStream(Reader);		
+		is2.setEncoding("UTF-8");
+		DocumentBuilderFactory docBuilderFactory =	DocumentBuilderFactory.newInstance();
+		DocumentBuilder docBuilder	=	docBuilderFactory.newDocumentBuilder();
+		template =	docBuilder.parse(is2);
+		if(Reader!= null)
+                        Reader.close();								
+		Node messageNode = template.getElementsByTagName("Message").item(0);
+		Node versionAttrNode = messageNode.getAttributes().getNamedItem("version");		
+		if(versionAttrNode!=null && versionAttrNode.getNodeValue().equalsIgnoreCase("010"))
+			versionOfDoc="10.6";			
+	}catch(IOException e){
+		e.printStackTrace();
+	}catch(Exception e){
+		e.printStackTrace();
+	} finally{
+		if(fw != null)
+			fw.close();
+		if(Reader!= null)
+			Reader.close();
+
+	}
+	String response="";
+	response=getResponse(f,isDirectoryService);
+	replyMessage+=response;
+	if(response !=null && !response.equals("")){
+			File resFile=null;
+				if(isDirectoryService.equals("true"))
+						resFile=new File("/mnt/vs12shared/serviceshared/Surescripts_Works/"+accountId+"/Directories/StatusFile_"+getUTCTime().replaceAll(":", "-")+".xml");
+				else
+						resFile=new File("/mnt/vs12shared/serviceshared/Surescripts_Works/"+accountId+"/Messaging/StatusFile_"+getUTCTime().replaceAll(":", "-")+"_"+count+".xml");
+			FileWriter	resWriter=new FileWriter(resFile);
+			resWriter.write(response);   
+			if(resWriter != null){
+				resWriter.close();
+				resWriter = null;
+			}
+		}
+ 		replyMessage+="!@#!";
+	  }
+	 replyMessage=replyMessage.substring(0,replyMessage.lastIndexOf("!@#!"));
+	 //System.out.println("isDirectoryService+++========:"+isDirectoryService);
+    return replyMessage;
+}
+public String getResponse(File input,String isDirectoryService)throws Exception
+    {
+    String strURL="";
+    if(isDirectoryService.equals("true")){
+           strURL="https://messaging.surescripts.net/Glenwood4dot4/Directoryxmlserver.aspx";	//New url
+	  //strURL="https://messaging.surescripts.net/Glenwood4x/DirectoryXmlServer.aspx";	//Old url
+          //strURL="https://admin.surescripts.net/Adminservices/XMLServer.aspx";
+	}
+    else{
+	if(versionOfDoc.equals("10.6"))
+		strURL="https://messaging.surescripts.net/Glenwood106x/AuthenticatingXmlServer.aspx";
+	else
+	        strURL="https://messaging.surescripts.net/Glenwood4x/authenticatingxmlserver.aspx";
+	}
+	System.out.println("\n\n\n=======================>"+strURL);
+
+    URI uri=new URI(strURL);
+    FileInputStream fs=null;
+    PostMethod post = null;
+    String ResponseBody="";
+    try{
+
+    fs=new FileInputStream(input);
+    HttpClient httpclient = new HttpClient();
+
+    httpclient.getHttpConnectionManager().getParams().setConnectionTimeout(200000);
+
+    httpclient.getHttpConnectionManager().getParams().setSoTimeout(200000);
+
+        post = new PostMethod(strURL);
+        //System.out.println("Setting the header");
+	Header header=new Header("Authorization",getEncodedCredentials());
+	//System.out.println("Header Set");
+
+    RequestEntity entity = new InputStreamRequestEntity(fs, "text/xml; charset=utf-8");
+    post.setRequestEntity(entity);
+    post.setRequestHeader("Accept","text/xml");
+    post.setRequestHeader("Cache-Control","no-cache");
+    post.setRequestHeader("SOAPAction","");
+    post.addRequestHeader(header);
+    
+
+        int result = httpclient.executeMethod(post);
+        if(accountId1.equals(accountId2))
+            System.out.println("::"+accountId2+"_POSTING_DATA_TO_SURESCRIPT");
+
+        //System.out.println("CALLING RESPONSEBODY  ::: ");
+        ResponseBody=post.getResponseBodyAsString();
+        //System.out.println("RETURNING RESPONSEBODY  ::: "+ResponseBody);
+        if(accountId1.equals(accountId2))
+            System.out.println("::"+accountId2+"_DATA_ACCNOLEGMENT_RECEIVED_FROM_SURESCRIPT");
+        }catch(Exception e){e.printStackTrace();}
+        finally {
+        	if(post != null)
+        		post.releaseConnection();
+        	if(fs != null)
+        		fs.close();
+        }
+        if(accountId1.equals(accountId2))
+            System.out.println("::"+accountId2+"_BACK_TO_SERVER_SIDE");
+        return ResponseBody;
+     }
+/*public String log(String accId){
+       System.out.println(accId+"");
+}
+*/
+public String insertData(String SPI,String URL,String accountId)throws Exception
+	{
+	Class.forName("org.postgresql.Driver");
+	Connection con=DriverManager.getConnection("jdbc:postgresql://localhost/surescripts?user=postgres&password=SureScript");
+	Statement st=con.createStatement();
+	String qry="Insert into identifyprescriber(spi,url,accountid) values ('"+SPI+"','"+URL+"','"+accountId+"')";
+	int result=st.executeUpdate(qry);
+	return ""+result;
+	}
+
+      public String getEncodedCredentials()
+      {
+           String returnValue="";
+           try
+           {
+              	String str=new String("GlenwoodPROD:P90k#Hn@eB#Prod".getBytes(),"UTF-8");
+		//String str=new String("GlenwoodUser7:P90kHneB".getBytes(),"UTF-8");
+               	byte toEncode[]=str.getBytes();
+                byte result[]=this.doEncoding(toEncode);
+                returnValue="Basic "+new String(result);
+            }catch(java.io.UnsupportedEncodingException e){e.printStackTrace();}
+            catch(org.apache.commons.codec.EncoderException ee){ee.printStackTrace();}
+            return returnValue;
+      }
+
+	public static String getUTCTime()
+	{
+		Date d=new Date();
+		Calendar cal=Calendar.getInstance(TimeZone.getTimeZone("UTC"));
+		cal.setTime(d);
+		int hours=cal.get(Calendar.HOUR_OF_DAY);
+		int mins=cal.get(Calendar.MINUTE);
+		int secs=cal.get(Calendar.SECOND);
+		int date=cal.get(Calendar.DATE);
+		int month=cal.get(Calendar.MONTH)+1;
+		int year=cal.get(Calendar.YEAR);
+		
+		return (year+"-"+convertToDoubleDigit(month)+"-"+convertToDoubleDigit(date)+
+		"T"+convertToDoubleDigit(hours)+":"+convertToDoubleDigit(mins)+":"+
+		convertToDoubleDigit(secs)+".0Z");
+	}
+
+
+	public static String convertToDoubleDigit(int value)
+	{
+		String returnValue=String.valueOf(value);
+		if(returnValue.length()==1)
+			returnValue="0"+returnValue;
+		return returnValue;
+	}
+
+}
+
