@@ -1,0 +1,22 @@
+
+/home/software/Desktop/to.ext:
+5087890700
+9544109791
+/home/software/Desktop/money.ext:
+770.00
+20.00
+
+/home/software/Desktop/final.ext:
+curl -X POST https://api.twilio.com/2010-04-01/Accounts/AC2a1d2545d7c4388bce7f8cebf8bb5641/Messages.json \
+--data-urlencode "To=+15087890700" \
+--data-urlencode "From=+15613635561" \
+--data-urlencode "Body=You have an outstanding balance of $ 770.00 with Allergy Consultant Inc.To make a payment via Phone or if you have any questions, Please call us at 5613687006. Reply STOP to optout." \
+-u "AC2a1d2545d7c4388bce7f8cebf8bb5641:06c980d9b27e54e18952a05a611485bb"
+
+curl -X POST https://api.twilio.com/2010-04-01/Accounts/AC2a1d2545d7c4388bce7f8cebf8bb5641/Messages.json \
+--data-urlencode "To=+19544109791" \
+--data-urlencode "From=+15613635561" \
+--data-urlencode "Body=You have an outstanding balance of $ 20.00 with Allergy Consultant Inc.To make a payment via Phone or if you have any questions, Please call us at 5613687006. Reply STOP to optout." \
+-u "AC2a1d2545d7c4388bce7f8cebf8bb5641:06c980d9b27e54e18952a05a611485bb"
+
+
