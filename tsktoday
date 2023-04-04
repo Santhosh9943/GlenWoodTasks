@@ -27,6 +27,8 @@ public class WebsitePath {
                         }
                     }
                 }
+                inputLine = inputLine.replaceAll("\\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Z|a-z]{2,}\\b", "[PROTECTED]");
+                System.out.println(inputLine);
             }
             in.close();
         } catch (IOException e) {
