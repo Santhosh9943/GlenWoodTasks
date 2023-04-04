@@ -1,1 +1,40 @@
-java program for get all paths from a website?
+import java.net.*;
+import java.io.*;
+import java.util.*;
+
+public class WebsitePath {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter website URL: ");
+        String url = scanner.nextLine();
+        scanner.close();
+        Set<String> paths = new HashSet<String>();
+        try {
+            URL website = new URL(url);
+            BufferedReader in = new BufferedReader(new InputStreamReader(website.openStream()));
+            String inputLine;
+            while ((inputLine = in.readLine()) != null) {
+                String[] words = inputLine.split("\\s+");
+                for (String word : words) {
+                    if (word.startsWith("href=")) {
+                        String path = word.substring(6);
+                        int index = path.indexOf("\"");
+                        if (index != -1) {
+                            path = path.substring(0, index);
+                        }
+                        if (path.startsWith("/")) {
+                            paths.add(path);
+                        }
+                    }
+                }
+            }
+            in.close();
+        } catch (IOException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+        System.out.println("Paths found:");
+        for (String path : paths) {
+            System.out.println(path);
+        }
+    }
+}
