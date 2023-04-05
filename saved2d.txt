@@ -1,0 +1,16 @@
+dev2 testing backend :
+======================
+
+cd localhost (Find path)
+cd path (Alias /demodesktop /var/version/GlaceEMRDesktop_UI/)
+backup target
+ssh ci
+cd testing workspace
+rsycn to dev2 backend testing path
+ssh dev2
+permition to target
+cp Context.xml old to new target
+kill -9 tomcat
+And restart
+Check d2d in sso
+

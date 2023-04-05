@@ -1,12 +1,58 @@
-if (url.startsWith("https://")) {
-            // Trim last slash if it exists
-            if (url.endsWith("/")) {
-                url = url.substring(0, url.length() - 1);
+package eg;
+
+import java.io.FileWriter;
+import java.net.URL;
+import java.util.Scanner;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.DocumentBuilder;
+import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
+import org.w3c.dom.Node;
+import org.w3c.dom.Element;
+
+public class GeeksForGeeksSitemap {
+    public static void main(String[] args) {
+    	String domain = null;
+    	String urlFilePath = null;
+    	String outPutFileName = null;
+    	StringBuilder appendAllURL = new StringBuilder();
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the URL of the sitemap: ");
+        String sitemapUrl = sc.nextLine();
+        System.out.println("Enter the Output File name you want: ");
+        outPutFileName = sc.nextLine();
+        if (sitemapUrl.startsWith("https://")) {
+            if (sitemapUrl.endsWith("/")) {
+            	sitemapUrl = sitemapUrl.substring(0, sitemapUrl.length() - 1);
             }
-            // Extract domain name from URL
-            String domain = url.replaceFirst("https?://(www\\.)?", "");
-            System.out.println(domain);
+            urlFilePath = "/home/software/Desktop/GlenwoodsTask/"+outPutFileName+".txt";
         } else {
             System.out.println("Invalid URL. URL should start with https://");
         }
+        
+        try {
+            URL url = new URL(sitemapUrl);
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            Document doc = dBuilder.parse(url.openStream());
+            doc.getDocumentElement().normalize();
+            NodeList nList = doc.getElementsByTagName("url");
+            System.out.println("Total " + nList.getLength() + " URLs in the sitemap: ");
+            for (int i = 0; i < nList.getLength(); i++) {
+                Node nNode = nList.item(i);
+                if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+                    Element eElement = (Element) nNode;
+                    appendAllURL.append("URL " + (i + 1) + ": " + eElement.getElementsByTagName("loc").item(0).getTextContent()+"\n");
+                }
+                try (FileWriter urlFileWriter = new FileWriter(urlFilePath)) {
+					urlFileWriter.write(appendAllURL.toString());
+					urlFileWriter.close();
+				}
+            }
+            System.out.println("File Created in "+urlFilePath);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+}
+ 
