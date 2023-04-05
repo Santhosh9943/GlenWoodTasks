@@ -1,34 +1,12 @@
-import java.net.URL;
-import java.util.Scanner;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.DocumentBuilder;
-import org.w3c.dom.Document;
-import org.w3c.dom.NodeList;
-import org.w3c.dom.Node;
-import org.w3c.dom.Element;
-
-public class GeeksForGeeksSitemap {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter the URL of the sitemap: ");
-        String sitemapUrl = sc.nextLine();
-        try {
-            URL url = new URL(sitemapUrl);
-            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-            Document doc = dBuilder.parse(url.openStream());
-            doc.getDocumentElement().normalize();
-            NodeList nList = doc.getElementsByTagName("url");
-            System.out.println("Total " + nList.getLength() + " URLs in the sitemap: ");
-            for (int i = 0; i < nList.getLength(); i++) {
-                Node nNode = nList.item(i);
-                if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-                    Element eElement = (Element) nNode;
-                    System.out.println("URL " + (i + 1) + ": " + eElement.getElementsByTagName("loc").item(0).getTextContent());
-                }
+if (url.startsWith("https://")) {
+            // Trim last slash if it exists
+            if (url.endsWith("/")) {
+                url = url.substring(0, url.length() - 1);
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+            // Extract domain name from URL
+            String domain = url.replaceFirst("https?://(www\\.)?", "");
+            System.out.println(domain);
+        } else {
+            System.out.println("Invalid URL. URL should start with https://");
         }
     }
-}
