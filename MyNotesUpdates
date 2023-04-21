@@ -1,0 +1,104 @@
+##################################################################
+ Spring_Testing_UI GlaceEMRDesktop_UI glaceemr_testing_ui update:
+##################################################################
+
+1. ssh root@172.16.31.30 (or) version1.glaceemr.com
+----------------------------------------------------
+
+2. cd /mnt/MainStorage/version/glaceemr_testing_ui/ ==> ls -lrth (note: backup old target)
+
+3. mv target target_Apr18_1
+
+4. git pull (note: If error 'git checkout file1.txt file2.txt')
+
+5. mvn clean package ==> ls -lrth (note: now new target will generated)
+
+6. chmod -Rf 777 target ==> chown -Rf root:root target
+
+7. ssh root@172.16.24.149 (or) dev2-desktop.glaceemr.com
+---------------------------------------------------------
+
+8. cat /etc/httpd/conf/httpd.conf ==> Alias /demodesktop /var/version/GlaceEMRDesktop_UI/target/glaceemr_ui-5.0-SNAPSHOT/ ==> cd /var/version/GlaceEMRDesktop_UI/ ==> ls -lrth
+
+9. mv target target_Apr18_1
+
+10. ssh root@172.16.31.30 (or) version1.glaceemr.com
+-----------------------------------------------------
+
+11.rsync -avzh --progress /mnt/MainStorage/version/glaceemr_testing_ui/target santho@172.18.24.149:/var/version/GlaceEMRDesktop_UI/
+
+12. ssh root@172.16.24.149 (or) dev2-desktop.glaceemr.com
+----------------------------------------------------------
+
+13. cd /var/version/GlaceEMRDesktop_UI/ ==> ls -lrth (note: now get target rsync from root@172.16.31.30:/mnt/MainStorage/version/glaceemr_testing_ui/target)
+
+14. chmod -Rf 777 target ==> chown -Rf root:root target
+
+15. service httpd status ==> service httpd restart
+
+====================================================================================================================================================
+
+###############################################################
+ Spring_Testing NRVBetaSpring_Testing glaceemr_testing update:
+###############################################################
+
+1. ssh root@172.16.31.30 (or) version1.glaceemr.com
+----------------------------------------------------
+
+2. cd /mnt/MainStorage/version/glaceemr_testing/ ==> ls -lrth (note: backup old target)
+
+3. mv target target_Apr18_1
+
+4. git pull (note: If error 'git checkout file1.txt file2.txt')
+
+5. mvn clean package ==> ls -lrth (note: now new target will generated)
+
+6. chmod -Rf 777 target ==> chown -Rf root:root target
+
+7. ssh root@172.16.24.149 (or) dev2-desktop.glaceemr.com
+---------------------------------------------------------
+
+8. [root@dev2-vmpcdesktop ~]# cd  /usr/share/tomcat/apache-tomcat-9.0.19/conf/Catalina/localhost/ ==> ls -lrth
+
+9. cat glaceemr_backend_testing.xml ==> docBase="/var/version/NRVBetaSpring_Testing/target/glaceemr_backend/" ==> cd /var/version/NRVBetaSpring_Testing/ ==> ls -lrth
+
+10. mv target target_Apr18_1
+
+11. ssh root@172.16.31.30 (or) version1.glaceemr.com
+-----------------------------------------------------
+
+12.rsync -avzh --progress /mnt/MainStorage/version/glaceemr_testing/target santho@172.18.24.149:/var/version/NRVBetaSpring_Testing/
+
+13. ssh root@172.16.24.149 (or) dev2-desktop.glaceemr.com
+----------------------------------------------------------
+
+14. cd /var/version/NRVBetaSpring_Testing/ ==> ls -lrth (note: now get target rsync from root@172.16.31.30:/mnt/MainStorage/version/glaceemr_testing/target)
+
+15. chmod -Rf 777 target ==> chown -Rf root:root target
+
+16. cp /var/version/NRVBetaSpring_Testing/target_Apr18_1/glaceemr_backend/WEB-INF/applicationContext.xml target/glaceemr_backend/WEB-INF/applicationContext.xml
+
+17. cp /var/version/NRVBetaSpring_Testing/target_apr18/glaceemr_backend/WEB-INF/classes/com/glenwood/glaceemr/server/filters/DataBaseAccessFilter.class target/glaceemr_backend/WEB-INF/classes/com/glenwood/glaceemr/server/filters/DataBaseAccessFilter.class
+
+18. ps -ef | grep -i java ==> kill -9 [psID] ==> service tomcat9 restart ==> tail -f /usr/share/tomcat/apache-tomcat-9.0.19/logs/catalina.out
+
+===================================================================================================================================================
+
+################################################
+ D2Desktop_legacy Legacy_Spring_Testing Update:
+################################################
+
+1. ssh root@172.16.24.149 (or) dev2-desktop.glaceemr.com
+---------------------------------------------------------
+
+2. [root@dev2-vmpcdesktop ~]# cd  /usr/share/tomcat/apache-tomcat-9.0.19/conf/Catalina/localhost/ ==> ls -lrth
+
+3. cat D2Desktop.xml ==>  docBase="/var/version/NRVBeta_Testing" ==> cd /var/version/NRVBeta_Testing ==> ls -lrth
+
+4. git pull ==> rm -Rf nohup.out ==> nohup ant clean build & ==> tail -f nohup.out
+
+5. ps -ef | grep -i java ==> kill -9 [psID] ==> service tomcat9 restart ==> tail -f /usr/share/tomcat/apache-tomcat-9.0.19/logs/catalina.out
+
+====================================================================================================================================================
+
+
