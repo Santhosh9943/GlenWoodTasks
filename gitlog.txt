@@ -1,0 +1,129 @@
+6dbe5d6 HEAD@{0}: checkout: moving from d99ee21efccaa27be40e78a7a8ccb3ff99194298 to 6dbe5d6258325eaf78b1d2df009b4f69ab581c7e
+d99ee21 HEAD@{1}: checkout: moving from 6dbe5d6258325eaf78b1d2df009b4f69ab581c7e to d99ee21efccaa27be40e78a7a8ccb3ff99194298
+6dbe5d6 HEAD@{2}: checkout: moving from cb50bb043bc7363dba8f0c8dcf1d30020d0fdafe to 6dbe5d6258325eaf78b1d2df009b4f69ab581c7e
+cb50bb0 HEAD@{3}: checkout: moving from main to cb50bb043bc7363dba8f0c8dcf1d30020d0fdafe
+6dbe5d6 HEAD@{4}: commit: aprl21
+cb50bb0 HEAD@{5}: commit: img
+a62dcb6 HEAD@{6}: pull: Fast-forward
+d99ee21 HEAD@{7}: commit: April12
+fa4f485 HEAD@{8}: pull: Fast-forward
+bb6c4c0 HEAD@{9}: commit: sds
+6d36e25 HEAD@{10}: commit: hygf
+ea5cb50 HEAD@{11}: pull: Fast-forward
+d50e8a6 HEAD@{12}: pull: Fast-forward
+d43f462 HEAD@{13}: commit: april3
+9320210 HEAD@{14}: commit: aserf
+ba1f26a HEAD@{15}: commit: aserf
+cdbfc71 HEAD@{16}: pull: Fast-forward
+33a06a3 HEAD@{17}: pull: Fast-forward
+e6f78ca HEAD@{18}: commit: Aprl_04_3
+47b9125 HEAD@{19}: pull: Fast-forward
+29fb053 HEAD@{20}: commit: Apr_04
+a2d615e HEAD@{21}: checkout: moving from master to main
+d416638 HEAD@{22}: checkout: moving from main to master
+a2d615e HEAD@{23}: commit: noth
+9317df6 HEAD@{24}: commit: noth
+6703438 HEAD@{25}: checkout: moving from master to main
+d416638 HEAD@{26}: checkout: moving from main to master
+6703438 HEAD@{27}: checkout: moving from master to main
+d416638 HEAD@{28}: checkout: moving from master to master
+d416638 HEAD@{29}: checkout: moving from main to master
+6703438 HEAD@{30}: commit: Apr_3_23
+6d577dc HEAD@{31}: checkout: moving from master to main
+d416638 HEAD@{32}: checkout: moving from main to master
+6d577dc HEAD@{33}: rebase finished: returning to refs/heads/main
+6d577dc HEAD@{34}: pull: checkout 6d577dc496b79cc935b252e7e96d92ffca81eed3
+9563295 HEAD@{35}: checkout: moving from main to main
+9563295 HEAD@{36}: rebase -i (finish): returning to refs/heads/main
+9563295 HEAD@{37}: rebase -i (pick): last
+fecc7cf HEAD@{38}: rebase -i (pick): commit man
+af1b1a2 HEAD@{39}: rebase -i (pick): msater.txt master commit
+a160289 HEAD@{40}: rebase -i (pick): mar 7 6:30 pm Git
+2acf3c9 HEAD@{41}: rebase -i (start): checkout origin/master
+6d577dc HEAD@{42}: checkout: moving from main to main
+6d577dc HEAD@{43}: checkout: moving from main to main
+6d577dc HEAD@{44}: checkout: moving from main to main
+6d577dc HEAD@{45}: rebase finished: returning to refs/heads/main
+6d577dc HEAD@{46}: rebase: last
+33d214d HEAD@{47}: rebase: commit man
+1085ce1 HEAD@{48}: rebase: msater.txt master commit
+d416638 HEAD@{49}: rebase: checkout master
+46660ab HEAD@{50}: checkout: moving from master to main
+d416638 HEAD@{51}: checkout: moving from main to master
+46660ab HEAD@{52}: checkout: moving from master to main
+d416638 HEAD@{53}: checkout: moving from main to master
+46660ab HEAD@{54}: checkout: moving from master to main
+d416638 HEAD@{55}: checkout: moving from master to master
+d416638 HEAD@{56}: checkout: moving from main to master
+46660ab HEAD@{57}: checkout: moving from master to main
+d416638 HEAD@{58}: checkout: moving from main to master
+46660ab HEAD@{59}: checkout: moving from master to main
+d416638 HEAD@{60}: checkout: moving from main to master
+46660ab HEAD@{61}: rebase finished: returning to refs/heads/main
+46660ab HEAD@{62}: rebase: mar 7 6:40 pm Git
+ab9489f HEAD@{63}: rebase: last
+a6a50aa HEAD@{64}: rebase: commit man
+6de1ef4 HEAD@{65}: rebase: msater.txt master commit
+901543a HEAD@{66}: rebase: mar 6 eve
+61fe148 HEAD@{67}: rebase: checkout branch2
+3da6dd1 HEAD@{68}: rebase: updating HEAD
+3da6dd1 HEAD@{69}: rebase: aborting
+61fe148 HEAD@{70}: rebase: checkout branch2
+3da6dd1 HEAD@{71}: checkout: moving from master to main
+d416638 HEAD@{72}: checkout: moving from main to master
+3da6dd1 HEAD@{73}: commit: mar 7 6:40 pm Git
+342f468 HEAD@{74}: checkout: moving from main to main
+342f468 HEAD@{75}: checkout: moving from master to main
+d416638 HEAD@{76}: commit (merge): master
+058a4e3 HEAD@{77}: commit: mar 7 6:30 pm Git
+61fe148 HEAD@{78}: Branch: renamed refs/heads/branch1 to refs/heads/master
+61fe148 HEAD@{80}: Branch: renamed refs/heads/master to refs/heads/branch1
+61fe148 HEAD@{82}: checkout: moving from main to master
+342f468 HEAD@{83}: commit: last
+0167e7b HEAD@{84}: reset: moving to 0167e7b1af4ab0d4d16b10387e4d344511635cab
+4f25bf4 HEAD@{85}: checkout: moving from master to main
+61fe148 HEAD@{86}: commit: hsjadn
+f17d5f0 HEAD@{87}: reset: moving to f17d5f0
+b739cc0 HEAD@{88}: reset: moving to b739cc0f4adceeeee1dcd7655421e2bc8ce42b00
+b739cc0 HEAD@{89}: reset: moving to b739cc0f4adceeeee1dcd7655421e2bc8ce42b00
+dc2d3da HEAD@{90}: commit: text.text commit
+4f25bf4 HEAD@{91}: checkout: moving from main to master
+4f25bf4 HEAD@{92}: merge master: Fast-forward
+c15a0b5 HEAD@{93}: checkout: moving from master to main
+4f25bf4 HEAD@{94}: checkout: moving from master to master
+4f25bf4 HEAD@{95}: commit (merge): commit man2
+0167e7b HEAD@{96}: commit: commit man
+261aecd HEAD@{97}: checkout: moving from main to master
+c15a0b5 HEAD@{98}: commit: commit mas
+497f0d3 HEAD@{99}: checkout: moving from main to main
+497f0d3 HEAD@{100}: checkout: moving from master to main
+261aecd HEAD@{101}: checkout: moving from main to master
+497f0d3 HEAD@{102}: commit: main delet master.txt
+261aecd HEAD@{103}: checkout: moving from main to main
+261aecd HEAD@{104}: checkout: moving from main to main
+261aecd HEAD@{105}: merge master: Fast-forward
+2acf3c9 HEAD@{106}: checkout: moving from master to main
+261aecd HEAD@{107}: checkout: moving from main to master
+2acf3c9 HEAD@{108}: checkout: moving from master to main
+261aecd HEAD@{109}: commit: msater.txt master commit
+2acf3c9 HEAD@{110}: checkout: moving from main to master
+2acf3c9 HEAD@{111}: checkout: moving from master to main
+2acf3c9 HEAD@{112}: checkout: moving from main to master
+2acf3c9 HEAD@{113}: checkout: moving from master to main
+2acf3c9 HEAD@{114}: checkout: moving from main to master
+2acf3c9 HEAD@{115}: checkout: moving from master to main
+2acf3c9 HEAD@{116}: checkout: moving from main to master
+2acf3c9 HEAD@{117}: checkout: moving from master to main
+2acf3c9 HEAD@{118}: checkout: moving from main to master
+2acf3c9 HEAD@{119}: commit: mar 6 eve
+e119354 HEAD@{120}: commit: mar 6
+b739cc0 HEAD@{121}: checkout: moving from master to main
+b739cc0 HEAD@{122}: checkout: moving from main to master
+b739cc0 HEAD@{123}: checkout: moving from master to main
+b739cc0 HEAD@{124}: checkout: moving from main to master
+b739cc0 HEAD@{125}: pull: Fast-forward
+f17d5f0 HEAD@{126}: commit: task complit
+041edef HEAD@{127}: reset: moving to origin/main
+a86fbc1 HEAD@{128}: commit: comit2
+66c0ebe HEAD@{129}: Branch: renamed refs/heads/master to refs/heads/main
+66c0ebe HEAD@{131}: commit (initial): 1st commit
