@@ -1,8 +1,12 @@
-Dear HR,
+#!/bin/bash
 
-I hope this email finds you well. I have completed filling out the requested details. Thank you for providing me with the necessary information and guidance.
+# Get the column positions
+number_col=$(head -n 1 data.csv | tr ',' '\n' | cat -n | grep 'number' | awk '{print $1}')
+money_col=$(head -n 1 data.csv | tr ',' '\n' | cat -n | grep 'money' | awk '{print $1}')
 
-Please let me know if there is anything else that you need from me.
-
-Best regards,
-[Your Name]
+# Extract the values and format the output
+tail -n +2 data.csv | while read line; do
+    number=$(echo "$line" | cut -d ',' -f "$number_col" | tr -d '-')
+    money=$(echo "$line" | cut -d ',' -f "$money_col")
+    echo "Jodi $number ok $money"
+done
